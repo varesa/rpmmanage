@@ -1,0 +1,1 @@
+console.error("Error: Parsing file C:\\Users\\esa\\PycharmProjects\\RPMManage\\client_js\\main.js: Unexpected token (16:17)");

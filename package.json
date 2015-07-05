@@ -1,0 +1,22 @@
+{
+  "name": "RPMManager",
+  "version": "0.0.1",
+  "dependencies": {
+    "flux": "latest",
+    "react": "latest",
+    "jquery": "latest"
+  },
+  "devDependencies": {
+    "browserify": "latest",
+    "gulp": "^3.9.0",
+    "react-tools": "latest",
+    "reactify": "latest",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "latest"
+  },
+  "scripts": {
+    "install-bootstrap": "cp node_modules/bootstrap/dist/* static/ -r",
+    "build-js": "browserify client_js/main.js > static/js/bundle.js",
+    "watch-js": "watchify client_js/main.js -d -o static/js/bundle.js -v"
+  }
+}
