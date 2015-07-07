@@ -1,15 +1,11 @@
-from flask import Flask, render_template
-
+from flask import current_app, render_template
 import json
 
-app = Flask(__name__)
-
-
-@app.route('/')
+@current_app.route('/')
 def hello_world():
     return render_template("index.html")
 
-@app.route('/projects/')
+@current_app.route('/projects/')
 def view_projects():
     return json.dumps([
         {
@@ -23,7 +19,3 @@ def view_projects():
             'version': '0.1'
         }
     ])
-
-if __name__ == '__main__':
-    app.debug = True
-    app.run(host="0.0.0.0")

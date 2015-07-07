@@ -4,7 +4,8 @@
   "dependencies": {
     "flux": "latest",
     "react": "latest",
-    "jquery": "latest"
+    "jquery": "latest",
+    "gulp": "~3.9.0"
   },
   "devDependencies": {
     "browserify": "latest",
