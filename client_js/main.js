@@ -4,7 +4,7 @@ $ = jQuery = require('jquery');
 
 
 
-var ReactProjectList = require('./components/ReactProjectList');
+var ReactApp = require('./components/ReactApp');
 
 var Dispatcher = require('./Dispatcher');
 dispatcher = new Dispatcher();
@@ -13,5 +13,5 @@ var ProjectStore = require('./ProjectStore');
 projectStore = new ProjectStore();
 
 $(document).ready(function() {
-    React.render(<ReactProjectList />, $("#main")[0]);
+    React.render(<ReactApp />, $("#main")[0]);
 });

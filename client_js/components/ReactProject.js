@@ -1,5 +1,6 @@
 var React = require('react');
 
+var ProjectToolbar = require("./ReactProjectToolbar");
 var Target = require("./ReactTarget");
 
 module.exports = React.createClass({
@@ -17,6 +18,7 @@ module.exports = React.createClass({
                     <h4>Project {this.props.name}. Current version {this.props.version}</h4>
                 </div>
                 <div className="panel-body">
+                    <ProjectToolbar />
                     <div className="panel">
                         <table className="table">
                             <tr>

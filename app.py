@@ -3,6 +3,7 @@ from flask.ext.celery import Celery
 
 import db
 import dbModels
+import views
 
 app = Flask(__name__)
 app.config['CELERY_BROKER_URL'] = "amqp://localhost"
@@ -13,12 +14,9 @@ celery = Celery(app)
 database = db.Db()
 
 if __name__ == '__main__':
-    dbModels.create_tables(database.get_engine())
+    dbModels.create_tables(database)
 
-    session = database.get_session()
-    session.add(dbModels.Test(id=1, name="abc"))
-    session.commit()
-    print(session.query(dbModels.Test).all())
+    views.create_views(app, database)
 
     app.debug = True
     app.run(host="0.0.0.0")

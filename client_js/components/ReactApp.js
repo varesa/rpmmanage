@@ -3,7 +3,9 @@
  */
 var React = require('react');
 
-var ProjectFilter = require('./ReactProjectFilter');
+var AppToolbar = require('./ReactAppToolbar');
+var Modal = require('./ReactModal');
+var ProjectNewModal = require('./ReactProjectNewModal');
 var Project = require('./ReactProject');
 var ProjectStore = require('./../ProjectStore');
 
@@ -12,13 +14,15 @@ module.exports = React.createClass({
         this.setState({'projects': projectStore.getAll()});
     },
     getInitialState: function() {
-        projectStore.fetch();       // Start a reftesh
+        dispatcher.dispatch({name: "PROJECTS_UPDATE_START"});
         return {'projects': []};    // But return an empty array for now
     },
-    componentDidMount: function() {
+    componentWillMount: function() {
         reactProjectList = this;
-        dispatcher.register(function() {
-            reactProjectList.updateState();
+        dispatcher.register(function(payload) {
+            if (payload.name === "PROJECTS_UPDATE_DONE") {
+                reactProjectList.updateState();
+            }
         });
     },
     render: function() {
@@ -26,7 +30,8 @@ module.exports = React.createClass({
             <div className="container">
                 <h1>RPM-Manager</h1>
 
-                <ProjectFilter />
+                <AppToolbar />
+                <ProjectNewModal />
 
                 { this.state.projects }
 

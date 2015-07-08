@@ -1,21 +1,30 @@
-from flask import current_app, render_template
+from flask import current_app, render_template, request
 import json
 
-@current_app.route('/')
-def hello_world():
-    return render_template("index.html")
+from dbModels import Project
 
-@current_app.route('/projects/')
-def view_projects():
-    return json.dumps([
-        {
-            'id': 1,
-            'name': 'DNSGui',
-            'version': '1.0.1',
-        },
-        {
-            'id': 2,
-            'name': 'repo_sync',
-            'version': '0.1'
-        }
-    ])
+def create_views(app, database):
+    @app.route('/')
+    def hello_world():
+        return render_template("index.html")
+
+    @app.route('/projects/', methods=['GET'])
+    def view_projects_get():
+        session = database.get_session()
+        projects = session.query(Project).all()
+        obj = []
+        for project in projects:
+            obj.append({'id': project.id, 'name': project.name, 'version': 'abc'})
+        return json.dumps(obj)
+
+    @app.route('/projects/', methods=['POST'])
+    def view_projects_post():
+        name = request.form['name']
+        url = request.form['url']
+
+        session = database.get_session()
+        session.add(Project(name=name, git_url=url))
+        session.commit()
+        session.close()
+
+        return "OK"
