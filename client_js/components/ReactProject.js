@@ -19,6 +19,7 @@ module.exports = React.createClass({
                 </div>
                 <div className="panel-body">
                     <ProjectToolbar />
+                    <br />
                     <div className="panel">
                         <table className="table">
                             <tr>

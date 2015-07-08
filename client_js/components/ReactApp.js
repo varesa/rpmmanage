@@ -7,7 +7,8 @@ var AppToolbar = require('./ReactAppToolbar');
 var Modal = require('./ReactModal');
 var ProjectNewModal = require('./ReactProjectNewModal');
 var Project = require('./ReactProject');
-var ProjectStore = require('./../ProjectStore');
+var ProjectStore = require('../stores/ReactProjectStore');
+var TargetSelectModal = require('./ReactTargetSelectModal');
 
 module.exports = React.createClass({
     updateState: function() {
@@ -32,6 +33,7 @@ module.exports = React.createClass({
 
                 <AppToolbar />
                 <ProjectNewModal />
+                <TargetSelectModal />
 
                 { this.state.projects }
 

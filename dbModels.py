@@ -48,7 +48,13 @@ class Task(base):
 def create_tables(database):
     base.metadata.create_all(database.get_engine())
 
-    """session = database.get_session()
+    session = database.get_session()
+    if len(session.query(Target).all()) < 2:
+        session.add(Target(name="t1"))
+        session.add(Target(name="t2"))
+    session.commit()
+    session.close()
+    """
     if len(session.query(Project).all()) == 0:
         session.add(Project(name="Project 1", ))
         session.add(Project(name="Project 2"))

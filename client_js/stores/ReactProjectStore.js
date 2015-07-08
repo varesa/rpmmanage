@@ -1,7 +1,7 @@
 var $ = require('jquery');
 var React = require('react');
 
-var ReactProject = require('./components/ReactProject');
+var ReactProject = require('../components/ReactProject');
 
 var ProjectStore = function() {
     this._projects = [];
